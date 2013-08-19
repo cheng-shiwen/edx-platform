@@ -373,7 +373,7 @@
             <label>${_('Please enter your new email address:')}</label>
             <input id="new_email_field" type="email" value="" />
             <label>${_('Please confirm your password:')}</label>
-            <input id="new_email_password" value="" type="password" />
+            <input id="new_email_password" value="" type="password" autocomplete="off" />
           </div>
           <section>
             <p>${_('We will send a confirmation to both {email} and your new email as part of the process.').format(email=user.email)}</p>
