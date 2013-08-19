@@ -111,10 +111,10 @@ def changes_not_persisted(step):
 
 @step(u'I see the assignment type "(.*)"$')
 def i_see_the_assignment_type(_step, name):
-      assignment_css = '#course-grading-assignment-name'
-      assignments = world.css_find(assignment_css)
-      types = [ele['value'] for ele in assignments]
-      assert name in types
+    assignment_css = '#course-grading-assignment-name'
+    assignments = world.css_find(assignment_css)
+    types = [ele['value'] for ele in assignments]
+    assert name in types
 
 
 @step(u'I change the highest grade range to "(.*)"$')
@@ -129,6 +129,7 @@ def i_see_highest_grade_range(_step, range_name):
     range_css = 'span.letter-grade'
     grade = world.css_find(range_css).first
     assert grade.value == range_name
+
 
 def get_type_index(name):
     name_id = '#course-grading-assignment-name'

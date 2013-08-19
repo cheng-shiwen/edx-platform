@@ -10,7 +10,7 @@ Feature: Course checklists
     Then I can check and uncheck tasks in a checklist
     And They are correctly selected after reloading the page
 
-  # CHROME ONLY, due to issues getting link to be active in firefox
+  # There are issues getting link to be active in firefox
   @skip_firefox
   Scenario: A task can link to a location within Studio
     Given I have opened Checklists
@@ -19,7 +19,7 @@ Feature: Course checklists
     And I press the browser back button
     Then I am brought back to the course outline in the correct state
 
-  # CHROME ONLY, due to issues getting link to be active in firefox
+  # There are issues getting link to be active in firefox
   @skip_firefox
   Scenario: A task can link to a location outside Studio
     Given I have opened Checklists

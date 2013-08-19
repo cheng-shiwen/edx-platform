@@ -99,7 +99,7 @@ def i_am_logged_in_user(step):
 
 @step('I am not logged in$')
 def i_am_not_logged_in(step):
-    world.visit(django_url('logout'))
+    world.visit('logout')
 
 
 @step('I am staff for course "([^"]*)"$')
