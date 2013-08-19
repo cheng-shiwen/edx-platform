@@ -135,11 +135,15 @@ class MongoIndexer:
     def _get_bulk_index_item(self, index, data):
         """
         Returns a string representing the next indexing action for bulk index
+
+        Format example is in the doc string for bulk_index. Reposted here for clarity:
+        Example:
+        {"index": {"_index": "transcript-index", "_type": "course_hash", "_id": "id_hash"}}
+        {"field1": "value1"...}
         """
 
         return_string = ""
         return_string += json.dumps({"index": {"_index": index, "_type": data["type_hash"], "_id": data["hash"]}})
-        log.debug(return_string)
         return_string += "\n"
         return_string += json.dumps(data)
         return_string += "\n"
@@ -210,11 +214,10 @@ class MongoIndexer:
 
         Otherwise there will be no thumbnail for the problem
         """
-        img_src_pattern = r"(<img)(.*?)(src=\")([^\s]+?)\"\s?(.*?)(/?>)"
+        img_src_pattern = r"<img[^>]+src=\"([^"]+)\""
         first_image = re.search(img_src_pattern, html, re.DOTALL)
         if first_image is not None:
-            tag = first_image.group()
-            return re.sub(img_src_pattern, r"\4", tag, re.DOTALL)
+            return first_image.group(1)
         else:
             return ""
 
@@ -227,7 +230,7 @@ class MongoIndexer:
 
         data = mongo_element["definition"]["data"]
         # Grabs all text in paragraph tags. Explanation is a header that appears a lot, so it's thrown out.
-        paragraphs = " ".join([text for text in re.findall(r"<p>(.*?)</p>", data) if text is not "Explanation"])
+        paragraphs = " ".join([text for text in re.findall(r"<p>(.*?)</p>", data)])
         paragraphs += " "
         # Grabs all text between text tags, which is the most common container after paragraph tags.
         paragraphs += " ".join([text for text in re.findall(r"<text>(.*?)</text>", data)])
@@ -371,8 +374,10 @@ class MongoIndexer:
             except NoSearchableTextException:
                 continue
             index_string += self._get_bulk_index_item(index, data)
-            if counter % chunk_size and counter > 1:
+            error_string += item["_id"]["name"] + "\n"
+            if counter % chunk_size == 0 and counter > 1:
                 index_status_code = self._es_instance.bulk_index(index_string).status_code
                 if index_status_code == 400:
-                    log.error("The following bulk index failed: %s" % index_string)
+                    log.error("The following bulk index failed: %s" % error_string)
                 index_string = ""
+                error_string = ""

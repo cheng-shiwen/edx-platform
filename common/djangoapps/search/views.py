@@ -18,7 +18,7 @@ from search.es_requests import MongoIndexer
 
 
 CONTENT_TYPES = ("transcript", "problem")
-log = logging.getLogger("edx.search")
+log = logging.getLogger(__name__)
 
 
 @ensure_csrf_cookie
@@ -27,6 +27,8 @@ def search(request, course_id):
     Returns search results within course_id from request.
 
     Request should contain the query string in the "s" parameter.
+
+    If user doesn't have access to the course, get_course_with_access automatically 404s
     """
 
     page = int(request.GET.get("page", 1))

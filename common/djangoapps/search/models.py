@@ -4,13 +4,11 @@ Models for representation of search results
 
 import json
 import string
-import logging
 
 import search.sorting
 from xmodule.modulestore import Location
 
 import nltk
-log = logging.getLogger("edx.search")
 
 
 class SearchResults:
@@ -24,23 +22,14 @@ class SearchResults:
     def __init__(self, response, **kwargs):
         """kwargs should be the GET parameters from the original search request
         filters needs to be a dictionary that maps fields to allowed values"""
-        raw_results = json.loads(response.content).get("hits", {"hits": ""})["hits"]
-        scores = [entry["_score"] for entry in raw_results]
-        self.sort = kwargs.get("sort", "relevance")
-        raw_data = [entry["_source"] for entry in raw_results]
-        self.query = " ".join(kwargs.get("s", "*.*"))
-        results = zip(raw_data, scores)
-        self.entries = [SearchResult(entry, score, self.query) for entry, score in results]
-        self.filters = kwargs.get("filters", {"": ""})
-
-    def sort_results(self):
-        """
-        Applies an in-place sort of the entries associated with the search results
-
-        Sort type is specified in object initialization
-        """
-
-        self.entries = search.sorting.sort(self.entries, self.sort)
+        raw_results = json.loads(response.content).get("hits", {"hits": []})["hits"]
+        self.query = " ".join(kwargs.get("s", False))
+        if not self.query:
+            self.entries = []
+        else:
+            entries = [SearchResult(entry, self.query) for entry in raw_results]
+            sort = kwargs.get("sort", "relevance")
+            self.entries = search.sorting.sort(entries, sort)
 
     def get_category(self, category="all"):
         """
@@ -60,11 +49,11 @@ class SearchResult:
     A single element from the Search Results collection
     """
 
-    def __init__(self, entry, score, query):
+    def __init__(self, entry, query):
         self.data = entry
         self.category = json.loads(entry["id"])["category"]
         self.url = _return_jump_to_url(entry)
-        self.score = score
+        self.score = entry["_score"]
         if entry["thumbnail"].startswith("/static/"):
             self.thumbnail = _get_content_url(self.data, entry["thumbnail"])
         else:
@@ -181,5 +170,5 @@ def _return_jump_to_url(entry):
 
     fields = ["tag", "org", "course", "category", "name"]
     location = Location(*[json.loads(entry["id"])[field] for field in fields])
-    url = '{0}/{1}/jump_to/{2}'.format('/courses', entry["course_id"], location)
+    url = '/courses/{0}/jump_to/{1}'.format(entry["course_id"], location)
     return url
