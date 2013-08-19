@@ -85,18 +85,17 @@ def _find(request, course_id, page=1, filter="all", test_url=None):
     course_hash = hashlib.sha1(course_id).hexdigest()
     base_url = "/".join([database, index, course_hash])
     base_url += "/_search"
-    context = {}
     response = requests.get(base_url, data=json.dumps(full_query_data))
     results = SearchResults(response, **request.GET)
     results.sort_results()
     course = course_id.split("/")[1]
-    context.update({"results": len(results.entries) > 0})
-    context.update({
+    context = {
+        "results": len(results.entries) > 0,
         "result_start": (page - 1) * 10,
         "result_end": page * 10,
         "filter": filter,
         "data": results,
         "old_query": query,
         "course_id": course
-    })
+    }
     return context
