@@ -15,6 +15,7 @@ from .public import *
 from .user import *
 from .tabs import *
 from .requests import *
+from .video import *
 try:
     from .dev import *
 except ImportError:

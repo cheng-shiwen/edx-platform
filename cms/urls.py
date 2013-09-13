@@ -45,7 +45,6 @@ urlpatterns = ('',  # nopep8
     url(r'^(?P<org>[^/]+)/(?P<course>[^/]+)/team/(?P<name>[^/]+)/(?P<email>[^/]+)$',
         'contentstore.views.course_team_user', name='course_team_user'),
 
-
     url(r'^(?P<org>[^/]+)/(?P<course>[^/]+)/info/(?P<name>[^/]+)$',
         'contentstore.views.course_info', name='course_info'),
     url(r'^(?P<org>[^/]+)/(?P<course>[^/]+)/course_info/updates/(?P<provided_id>.*)$',
@@ -64,6 +63,9 @@ urlpatterns = ('',  # nopep8
     # This is the URL used by BackBone for updating and re-fetching the model.
     url(r'^(?P<org>[^/]+)/(?P<course>[^/]+)/settings-advanced/(?P<name>[^/]+)/update.*$',
         'contentstore.views.course_advanced_updates', name='course_advanced_settings_updates'),
+
+    url(r'^videoid2source/(?P<videoid>.*?)$',
+        'contentstore.views.videoid2source', name='videoid2source'),
 
     url(r'^(?P<org>[^/]+)/(?P<course>[^/]+)/(?P<category>[^/]+)/(?P<name>[^/]+)/gradeas.*$',
         'contentstore.views.assignment_type_update', name='assignment_type_update'),
