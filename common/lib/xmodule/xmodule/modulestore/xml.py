@@ -57,6 +57,7 @@ class ImportSystem(XMLParsingSystem, MakoDescriptorSystem):
         self.org, self.course, self.url_name = course_id.split('/')
         # cdodge: adding the course_id as passed in for later reference rather than having to recomine the org/course/url_name
         self.course_id = course_id
+        self.course_dir = course_dir
         self.load_error_modules = load_error_modules
 
         def process_xml(xml):

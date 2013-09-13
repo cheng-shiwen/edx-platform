@@ -228,6 +228,7 @@ PIPELINE_CSS = {
             'sass/base-style.css',
             'xmodule/modules.css',
             'xmodule/descriptor.css',
+            'player/videoplayer.css',
         ],
         'output_filename': 'css/cms-base-style.css',
     },

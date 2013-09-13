@@ -539,7 +539,10 @@ notes_js = sorted(rooted_glob(PROJECT_ROOT / 'static', 'coffee/src/notes/**/*.co
 
 PIPELINE_CSS = {
     'application': {
-        'source_filenames': ['sass/application.css'],
+        'source_filenames': [
+            'sass/application.css',
+            'player/videoplayer.css',
+	],
         'output_filename': 'css/lms-application.css',
     },
     'course': {

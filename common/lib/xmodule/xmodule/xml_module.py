@@ -419,6 +419,8 @@ class XmlDescriptor(XModuleDescriptor):
         for attr in sorted(own_metadata(self)):
             # don't want e.g. data_dir
             if attr not in self.metadata_to_strip and attr not in self.metadata_to_export_to_policy:
+                if xml_object.tag == 'video' and attr != 'display_name':
+                    continue
                 val = val_for_xml(attr)
                 try:
                     xml_object.set(attr, val)

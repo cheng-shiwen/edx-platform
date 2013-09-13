@@ -1,0 +1,26 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<script src="jquery.min.js"></script>
+	<script src="videoplayer.js"></script>
+	<link rel="stylesheet" href="videoplayer.css" />
+</head>
+<body>
+	<center id="T-video">
+		<video width="528" height="297" controls="controls" autoplay="autoplay">    
+		    <source type="" src=""/>
+		</video>
+	</center>
+	<script>
+		var args = location.search.substr(1);
+		var paras = args.split("&&");
+		$('source').attr('type', paras[0]);
+		$('source').attr('src', paras[1]);
+		if (paras.length == 4) {
+			$('video').attr('width', paras[2]);
+			$('video').attr('height', paras[3]);
+		}
+	</script>
+</body>
+</html>

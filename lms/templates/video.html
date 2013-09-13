@@ -1,82 +1,20 @@
 <%! from django.utils.translation import ugettext as _ %>
 
 % if display_name is not UNDEFINED and display_name is not None:
-    <h2>${display_name}</h2>
+  <h2> ${display_name} </h2>
 % endif
 
-<div
-    id="video_${id}"
-    class="video"
-
-    data-streams="${youtube_streams}"
-
-    ${'data-sub="{}"'.format(sub) if sub else ''}
-    ${'data-autoplay="{}"'.format(autoplay) if autoplay else ''}
-
-    ${'data-mp4-source="{}"'.format(sources.get('mp4')) if sources.get('mp4') else ''}
-    ${'data-webm-source="{}"'.format(sources.get('webm')) if sources.get('webm') else ''}
-    ${'data-ogg-source="{}"'.format(sources.get('ogv')) if sources.get('ogv') else ''}
-
-    data-caption-data-dir="${data_dir}"
-    data-show-captions="${show_captions}"
-    data-start="${start}"
-    data-end="${end}"
-    data-caption-asset-path="${caption_asset_path}"
-    data-autoplay="${autoplay}"
->
-    <div class="tc-wrapper">
-        <article class="video-wrapper">
-            <div class="video-player-pre"></div>
-
-            <section class="video-player">
-                <div id="${id}"></div>
-            </section>
-
-            <div class="video-player-post"></div>
-
-            <section class="video-controls">
-                <div class="slider" tabindex="0" title="Video position"></div>
-
-                <div>
-                    <ul class="vcr">
-                        <li><a class="video_control" href="#" title="${_('Play')}"></a></li>
-                        <li><div class="vidtime">0:00 / 0:00</div></li>
-                    </ul>
-                    <div class="secondary-controls">
-                        <div class="speeds">
-                            <a href="#" title="Speeds">
-                                <h3>${_('Speed')}</h3>
-                                <p class="active"></p>
-                            </a>
-                            <ol class="video_speeds"></ol>
-                        </div>
-                        <div class="volume">
-                            <a href="#" title="Volume"></a>
-                            <div class="volume-slider-container">
-                                <div class="volume-slider"></div>
-                            </div>
-                        </div>
-                        <a href="#" class="add-fullscreen" title="${_('Fill browser')}">${_('Fill browser')}</a>
-                        <a href="#" class="quality_control" title="${_('HD')}">${_('HD')}</a>
-
-                        <a href="#" class="hide-subtitles" title="${_('Turn off captions')}">${_('Captions')}</a>
-                    </div>
-                </div>
-            </section>
-        </article>
-
-        <ol class="subtitles" tabindex="0" title="Captions"><li></li></ol>
-    </div>
+<script src="/static/player/videoplayer.js"></script>
+<div id="T-video">
+  <video width="640" height="360" controls="controls">
+    % if source:
+    <source type="${sourceType}" src="${source}"/>
+    % endif
+    % if track_zh:
+    <track kind="subtitles" src="${track_zh}" srclang="ch" label="中文"/>
+    % endif
+    % if track_en:
+    <track kind="subtitles" src="${track_en}" srclang="en" label="English"/>
+    % endif
+  </video>
 </div>
-
-% if sources.get('main'):
-    <div class="video-sources">
-        <p>${(_('Download video') + ' <a href="%s">' + _('here') + '</a>.') % sources.get('main')}</p>
-    </div>
-% endif
-
-% if track:
-    <div class="video-tracks">
-        <p>${(_('Download subtitles') + ' <a href="%s">' + _('here') + '</a>.') % track}</p>
-    </div>
-% endif
