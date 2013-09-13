@@ -149,32 +149,31 @@ class CourseDetails(object):
 
     @staticmethod
     def parse_video_tag(raw_video):
-        """
-        Because the client really only wants the author to specify the youtube key, that's all we send to and get from the client.
-        The problem is that the db stores the html markup as well (which, of course, makes any sitewide changes to how we do videos
-        next to impossible.)
-        """
-        if not raw_video:
-            return None
-
-        keystring_matcher = re.search(r'(?<=embed/)[a-zA-Z0-9_-]+', raw_video)
-        if keystring_matcher is None:
-            keystring_matcher = re.search(r'<?=\d+:[a-zA-Z0-9_-]+', raw_video)
-
-        if keystring_matcher:
-            return keystring_matcher.group(0)
+        # return the intro-video url to intro course setting's page in cms
+        if raw_video:
+            keystring_matcher = re.search(r'&&([^"]*)', raw_video)
+            if keystring_matcher:
+                return keystring_matcher.group(1)
+            else:
+                return raw_video
         else:
-            logging.warn("ignoring the content because it doesn't not conform to expected pattern: " + raw_video)
             return None
 
     @staticmethod
-    def recompose_video_tag(video_key):
-        # TODO should this use a mako template? Of course, my hope is that this is a short-term workaround for the db not storing
-        # the right thing
+    def recompose_video_tag(video_url):
+        # return the intro-video frame to intro course page in lms
         result = None
-        if video_key:
-            result = '<iframe width="560" height="315" src="//www.youtube.com/embed/' + \
-                video_key + '?autoplay=1&rel=0" frameborder="0" allowfullscreen=""></iframe>'
+        if video_url:
+            video_type = 'video/mp4'
+            if video_url.find('youtube') > -1:
+                video_type = 'video/youtube'
+            elif '.' in video_url:
+                ext = video_url.rsplit('.', 1)[1].lower()
+                if ext == 'ogv':
+                    video_type = 'video/ogg'
+                elif ext in ['webm', 'mov', 'wmv', 'flv', 'swf']:
+                    video_type = 'video/' + ext
+            result = '<iframe width="560" height="315" src="/static/player/introvideo.html?' + video_type + '&&' + video_url + '" frameborder="0" allowfullscreen=""></iframe>'
         return result
 
 

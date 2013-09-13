@@ -92,10 +92,7 @@
     embed = $($(this).attr('href')).find('iframe')
     if(embed.length > 0) {
       if(embed.attr('src').indexOf("?") > 0) {
-          embed.data('src', embed.attr('src') + '&autoplay=1&rel=0');
-          embed.attr('src', '');
-      } else {
-          embed.data('src', embed.attr('src') + '?autoplay=1&rel=0');
+          embed.data('src', embed.attr('src'));
           embed.attr('src', '');
       }
     }

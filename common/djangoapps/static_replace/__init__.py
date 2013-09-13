@@ -109,7 +109,7 @@ def replace_static_urls(text, data_directory, course_id=None):
         rest = match.group('rest')
 
         # Don't mess with things that end in '?raw'
-        if rest.endswith('?raw'):
+        if rest.endswith('?raw') or rest.find('?video') > -1:
             return original
 
         # In debug mode, if we can find the url as is,

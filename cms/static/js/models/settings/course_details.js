@@ -53,19 +53,17 @@ CMS.Models.Settings.CourseDetails = Backbone.Model.extend({
             errors.enrollment_end = gettext("The enrollment end date cannot be after the course end date.");
         }
         if (newattrs.intro_video && newattrs.intro_video !== this.get('intro_video')) {
-            if (this._videokey_illegal_chars.exec(newattrs.intro_video)) {
-                errors.intro_video = gettext("Key should only contain letters, numbers, _, or -");
-            }
-            // TODO check if key points to a real video using google's youtube api
+            // TODO check if video's url using illegal characters
+            // if (this._videourl_illegal_chars.exec(newattrs.intro_video)) {
+            //     errors.intro_video = "Key should only contain letters, numbers, _, or -";
+            // }
         }
         if (!_.isEmpty(errors)) return errors;
         // NOTE don't return empty errors as that will be interpreted as an error state
     },
 
-    _videokey_illegal_chars : /[^a-zA-Z0-9_-]/g,
+    // _videokey_illegal_chars : /[^a-zA-Z0-9_-]/g,
     set_videosource: function(newsource) {
-        // newsource either is <video youtube="speed:key, *"/> or just the "speed:key, *" string
-        // returns the videosource for the preview which iss the key whose speed is closest to 1
         if (_.isEmpty(newsource) && !_.isEmpty(this.get('intro_video'))) this.set({'intro_video': null}, {validate: true});
         // TODO remove all whitespace w/in string
         else {
@@ -75,7 +73,20 @@ CMS.Models.Settings.CourseDetails = Backbone.Model.extend({
         return this.videosourceSample();
     },
     videosourceSample : function() {
-        if (this.has('intro_video')) return "//www.youtube.com/embed/" + this.get('intro_video');
+        if (this.has('intro_video')) return "/static/player/introvideo.html?" + this.videosourceType(this.get('intro_video')) + "&&" + this.get('intro_video');
         else return "";
+    },
+    videosourceType : function(videosource) {
+        if (videosource.indexOf("youtube") != -1)
+            return "video/youtube";
+        else if (videosource.indexOf(".") != -1) {
+            var pieces = videosource.split(".");
+            var ext = pieces[pieces.length - 1].toLowerCase();
+            if (ext == "ogv")
+                return "video/ogg";
+            else if (ext == "webm" || ext == "mov" || ext == "wmv" || ext == "flv" || ext == "swf")
+                return "video/" + ext;
+        }
+        return "video/mp4";
     }
 });

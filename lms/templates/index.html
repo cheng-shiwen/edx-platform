@@ -182,11 +182,13 @@
   <div class="inner-wrapper">
     <%
       if self.stanford_theme_enabled():
-        youtube_video_id = "2gmreZObCY4"
+        video_url = "http://www.youtube.com/watch?v=2gmreZObCY4"
+        video_type = "video/youtube"
       else:
-        youtube_video_id = "XNaiOGxWeto"
+        video_url = "http://www.youtube.com/watch?v=XNaiOGxWeto"
+        video_type = "video/youtube"
     %>
-    <iframe width="640" height="360" src="//www.youtube.com/embed/${youtube_video_id}?showinfo=0" frameborder="0" allowfullscreen></iframe>
+    <iframe width="640" height="360" src="/static/player/introvideo.html?${video_type}&&${video_url}&&608&&342" frameborder="0" allowfullscreen></iframe>
   </div>
 </section>
 
