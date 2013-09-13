@@ -158,7 +158,7 @@ class VideoDescriptor(VideoFields, RawDescriptor):
     def definition_to_xml(self, resource_fs):
         xml = etree.Element('video')
 
-        xml.set('display_name', self.display_name)
+        xml.set('display_name', unicode(self.display_name))
 
         if self.source:
             ele = etree.Element('source')
