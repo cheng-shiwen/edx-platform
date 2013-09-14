@@ -8,10 +8,10 @@ import urllib2
 from xml.etree import ElementTree
 from django.http import HttpResponse
 
-import logging
-log = logging.getLogger(__name__)
-
-__all__ = ['videoid2source']
+__all__ = [
+	'videoid2source',
+	'check_permission'
+]
 
 USERID = '44B36C7761D3412F'
 APIKEY = 'bySAR5lIFZEx08SKoYLQfNGjZMGx71cQ'
@@ -54,3 +54,7 @@ def videoid2source(request, videoid):
 		pass
 
 	return HttpResponse(json.dumps({'sources': sources}), mimetype="application/json")
+
+def check_permission(request, querystring):
+	queryString = querystring + '&userid=' + USERID
+	return HttpResponse(json.dumps({'encrypt': encrypt(queryString)}), mimetype="application/json")

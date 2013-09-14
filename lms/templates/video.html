@@ -7,9 +7,7 @@
 <script src="/static/player/videoplayer.js"></script>
 <div id="T-video">
   <video width="640" height="360" controls="controls">
-    % if source:
     <source type="${sourceType}" src="${source}"/>
-    % endif
     % if track_zh:
     <track kind="subtitles" src="${track_zh}" srclang="ch" label="中文"/>
     % endif
