@@ -1,4 +1,4 @@
-var swfobj = new SWFObject('http://union.bokecc.com/flash/api/uploader.swf', 'uploadswf', '80', '31', '8');
+var swfobj = new SWFObject('uploader.swf', 'uploadswf', '80', '31', '8');
 swfobj.addVariable("progress_interval", 1);
 swfobj.addVariable("notify_url", "http://192.168.56.101:8081/notifystatus");
 swfobj.addParam('allowFullscreen', 'true');
