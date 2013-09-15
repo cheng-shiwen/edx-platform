@@ -1,0 +1,128 @@
+#T-videoupload {
+	width: 404px;
+	padding-bottom: 2px;
+	background: #FFF;
+	border-radius: 5px;
+	margin: 0;
+	padding: 0;
+	font-size: 62.5%;
+	font-family: "Lucida Sans Unicode", "Lucida Grande", "Lucida Sans", sans-serif;
+	-moz-border-radius: 5px;
+	-webkit-border-radius: 5px;
+	box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.7);
+	-webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.7);
+	-moz-box-shadow: 0 0px 4px rgba(0, 0, 0, 0.7);
+}
+
+#T-videoupload-header {
+	background: url(upload-header-bg.png);
+	padding: 18px 18px 14px 18px;
+	border-bottom: 1px solid #CCC;
+	border-top-left-radius: 5px;
+	-moz-border-radius-topleft: 5px;
+	-webkit-border-top-left-radius: 5px;
+	border-top-right-radius: 5px;
+	-moz-border-radius-topright: 5px;
+	-webkit-border-top-right-radius: 5px;
+}
+
+#T-videoupload-header  h2 {
+	color: #444;
+	font-size: 2em;
+	font-weight: 700;
+	margin: 0;
+	padding: 0;
+	padding-bottom: 4px;
+	margin-bottom: 3px;
+	text-shadow: 1px 1px 0 rgba(255, 255, 255, 0.5);
+	font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+#T-videoupload .txt-fld {
+	position: relative;
+	width: 364px;
+	padding: 14px 20px;
+	border-bottom: 1px solid #EEE;
+	text-align: right;
+}
+#T-videoupload .btn-fld {
+	width: 84px;
+	overflow: hidden;
+	padding: 12px 160px 12px 160px;
+}
+
+#T-videoupload .btn-fld input {
+	float: right;
+	font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+	background: #743481;
+	border: none;
+	width: auto;
+	overflow: visible;
+	font-size: 1.4em;
+	color: #FFF;
+	padding: 7px 10px;
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	font-weight: bold;
+	text-shadow: 0 1px 0 rgba(0, 0, 0, 0.4);
+}
+
+#T-videoupload .txt-fld label {
+	display: block;
+	float: left;
+	width: 90px;
+	padding-top: 8px;
+	color: #222;
+	font-size: 1.5em;
+	text-align: left;
+}
+#T-videoupload .txt-fld input {
+	width: 244px;
+	padding: 8px;
+	margin: 0;
+	border-radius: 4px;
+	-moz-border-radius: 4px;
+	-webkit-border-radius: 4px;
+	font-size: 1.2em;
+	color: #222;
+	background: #F7F7F7;
+	font-family: "Helvetica Neue";
+	outline: none;
+	border-top: 1px solid #CCC;
+	border-left: 1px solid #CCC;
+	border-right: 1px solid #E7E6E6;
+	border-bottom: 1px solid #E7E6E6;
+}
+
+.txt-fld input:focus, .txt-fld textarea:focus {
+	background-color: #FAF9DC;
+}
+        
+#T-videoupload button {
+	float: right;
+	font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+	background: #743481;
+	border: none;
+	width: auto;
+	overflow: visible;
+	font-size: 1.4em;
+	color: #FFF;
+	padding: 7px 10px;
+	border-radius: 4px;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	font-weight: bold;
+	text-shadow: 0 1px 0 rgba(0,0,0,0.4);
+}
+
+.ui-progressbar {
+	position: relative;
+}
+
+.progress-label {
+	position: absolute;
+	left: 43%;
+	top: 7px;
+	font-weight: bold;
+}

@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>上传视频</title>
+	<script type="text/javascript" src="swfobject.js"></script>
+	<script type="text/javascript" src="jquery.min.js"></script>
+	<script src="jquery-ui.js"></script>
+	<link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+	<link rel="stylesheet" type="text/css" href="videoupload.css" />
+</head>
+<body onresize="uploadWinResize();" onload="uploadWinResize();">
+	<div id="T-videoupload">
+		<div id="T-videoupload-header">
+			<h2>上传视频</h2>
+<!-- 			<a class="modal_close" href="#"></a> -->
+		</div>
+		<form action="" method="get">
+			<div class="txt-fld">
+				<label>选择视频</label>
+				<input id="videofile" name="videofile" type="text" style="width: 154px; margin-right: 10px;" />
+				<button type="button" style="width: 80px; height: 31px; position: absolute; z-index: -1;">　浏览　</button>
+				<div id="swfDiv" style="float: right;"></div>
+			</div>
+			<div class="txt-fld">
+				<label>课程名称</label>
+				<input id="tag" name="tag" type="text" />
+			</div>
+			<div class="txt-fld">
+				<label>视频简介</label>
+				<input id="description" name="description" type="text" />
+			</div>
+			<div style="border-bottom: 0; text-align: right; padding: 14px 20px 0px 20px;">
+				<div id="progressbar" style="height: 31px;"><div class="progress-label"></div></div>
+			</div>
+			<div class="btn-fld">
+				<input type="button" value="　上传　" onclick="submitvideo();">
+			</div>
+		</form>
+	</div>
+	<script type="text/javascript" src="videoupload.js"></script>
+</body>
+</html>
