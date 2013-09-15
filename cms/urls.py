@@ -68,6 +68,7 @@ urlpatterns = ('',  # nopep8
         'contentstore.views.videoid2source', name='videoid2source'),
     url(r'^checkpermission/(?P<querystring>.*?)$',
         'contentstore.views.check_permission', name='check_permission'),
+    url(r'^notifystatus$', 'contentstore.views.notify_status', name='notify_status'),
 
     url(r'^(?P<org>[^/]+)/(?P<course>[^/]+)/(?P<category>[^/]+)/(?P<name>[^/]+)/gradeas.*$',
         'contentstore.views.assignment_type_update', name='assignment_type_update'),

@@ -10,7 +10,8 @@ from django.http import HttpResponse
 
 __all__ = [
 	'videoid2source',
-	'check_permission'
+	'check_permission',
+	'notify_status'
 ]
 
 USERID = '44B36C7761D3412F'
@@ -50,7 +51,6 @@ def videoid2source(request, videoid):
 				elif quality == '20':
 					sources['quality20'].append(source)
 	except Exception as e:
-		logging.debug("error parsing video source")
 		pass
 
 	return HttpResponse(json.dumps({'sources': sources}), mimetype="application/json")
@@ -58,3 +58,10 @@ def videoid2source(request, videoid):
 def check_permission(request, querystring):
 	queryString = querystring + '&userid=' + USERID
 	return HttpResponse(json.dumps({'encrypt': encrypt(queryString)}), mimetype="application/json")
+
+def notify_status(request):
+	videoid = request.GET.get('videoid')
+	status = request.GET.get('status')
+	duration = request.GET.get('duration')
+	image = request.GET.get('image')
+	return HttpResponse('<result>OK</result>', mimetype="application/xml")
