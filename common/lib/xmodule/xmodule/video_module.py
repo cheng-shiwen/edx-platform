@@ -26,7 +26,7 @@ class VideoFields(object):
     """Fields for `VideoModule` and `VideoDescriptor`."""
     data = String(help="通过编辑XML数据来给定视频参数和信息", scope=Scope.content, default="")
     position = Integer(help="当前视频中的位置", scope=Scope.user_state, default=0)
-    source = String(help='视频的URL地址，支持mp4/m4v/webm/ogv/wmv/flv，支持 <button class="button upload-button" onclick="openwin($(this).parent().prev().children().eq(1).attr('+"'id'"+'));">上传视频</button>', display_name="视频地址", scope=Scope.settings, default="")
+    source = String(help='视频的URL地址，支持mp4/m4v/webm/ogv/flv， 支持 <button class="button upload-button" onclick="openwin($(this).parent().prev().children().eq(1).attr('+"'id'"+'));">上传视频</button>', display_name="视频地址", scope=Scope.settings, default="")
     track_zh = String(help="中文字幕的上传路径，字幕将显示在视频底部，支持srt/vtt", display_name="视频字幕 (中文)", scope=Scope.settings, default="")
     track_en = String(help="英文字幕的上传路径，字幕将显示在视频底部，支持srt/vtt", display_name="视频字幕 (英文)", scope=Scope.settings, default="")
 

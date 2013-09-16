@@ -63,4 +63,6 @@ function submitvideo() {
 function uploadWinResize() {
 	$('#T-videoupload').css('marginTop', ($(window).height() - 353) / 2 + 'px');
 	$('#T-videoupload').css('marginLeft', ($(window).width() - 420) / 2 + 'px');
+	$('#swfDiv').css('top', ($(window).height() - 353) / 2 + 79 + 'px');
+	$('#swfDiv').css('left', ($(window).width() - 420) / 2 + 312 + 'px');
 }
