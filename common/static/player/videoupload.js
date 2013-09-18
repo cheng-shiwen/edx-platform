@@ -1,6 +1,6 @@
 var swfobj = new SWFObject('uploader.swf', 'uploadswf', '80', '31', '8');
 swfobj.addVariable("progress_interval", 1);
-swfobj.addVariable("notify_url", "http://192.168.56.101:8081/notifystatus");
+swfobj.addVariable("notify_url", "http://" + location.host + "/notifystatus");
 swfobj.addParam('allowFullscreen', 'true');
 swfobj.addParam('allowScriptAccess', 'always');
 swfobj.addParam('wmode', 'transparent');
