@@ -15,7 +15,7 @@ function on_spark_selected_file(filename) {
 function on_spark_upload_validated(status, videoid) {
 	if (status == "OK") {
 		// alert("上传正常, videoid: " + videoid);
-		window.opener.document.getElementById(videosourceID).value = videoid;
+		window.opener.fillinVideoid(videosourceID, videoid);
 	} else if (status == "NETWORK_ERROR") {
 		alert("网络错误");
 	} else {
