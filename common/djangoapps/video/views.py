@@ -8,12 +8,6 @@ import urllib2
 from xml.etree import ElementTree
 from django.http import HttpResponse
 
-__all__ = [
-	'videoid2source',
-	'check_permission',
-	'notify_status'
-]
-
 USERID = '44B36C7761D3412F'
 APIKEY = 'bySAR5lIFZEx08SKoYLQfNGjZMGx71cQ'
 

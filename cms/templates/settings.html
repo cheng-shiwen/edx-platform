@@ -222,7 +222,7 @@ from contentstore import utils
                   <div class="input">
                     <input type="text" class="long new-course-introduction-video add-video-data" id="course-introduction-video" value="" placeholder="Your video's URL" autocomplete="off" />
                     <span class="tip tip-stacked">${_("Please enter your video's URL, support ")}<button class="button upload-button" onclick="openwin($(this).parent().prev().attr('id'));return false;">上传视频</button></span>
-                    <script type="text/javascript">function openwin(videosourceID){var iHeight=390;var iWidth=460;var iTop=(window.screen.availHeight-30-iHeight)/2;var iLeft=(window.screen.availWidth-10-iWidth)/2;window.open('/static/player/videoupload.html?videosourceid='+videosourceID, 'uploadwindow', 'height='+iHeight+', width='+iWidth+', top='+iTop+', left='+iLeft+', toolbar=no, menubar=no, scrollbars=auto, resizeable=no, location=no, status=no');}
+                    <script type="text/javascript">function openwin(videosourceID){var iHeight=390;var iWidth=460;var iTop=(window.screen.availHeight-30-iHeight)/2;var iLeft=(window.screen.availWidth-10-iWidth)/2;window.open('/static/player/videoupload.html?videosourceid='+videosourceID,'uploadwindow-'+videosourceID,'height='+iHeight+', width='+iWidth+', top='+iTop+', left='+iLeft+', toolbar=no, menubar=no, scrollbars=auto, resizeable=no, location=no, status=no');}
 function fillinVideoid(videosourceID,videoid){$('#'+videosourceID).attr('value',videoid);$('#'+videosourceID).trigger('change');}</script>
                   </div>
                 </li>

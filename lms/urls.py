@@ -44,6 +44,7 @@ urlpatterns = ('',  # nopep8
     url(r'^create_exam_registration$', 'student.views.create_exam_registration'),
 
     url(r'^password_reset/$', 'student.views.password_reset', name='password_reset'),
+    url(r'^videoid2source/(?P<videoid>.*?)$', 'video.views.videoid2source', name="videoid2source"),
     ## Obsolete Django views for password resets
     ## TODO: Replace with Mako-ized views
     url(r'^password_change/$', django.contrib.auth.views.password_change,
